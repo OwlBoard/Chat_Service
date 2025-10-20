@@ -1,0 +1,36 @@
+# Web Framework
+fastapi
+
+# ASGI Server to run FastAPI
+uvicorn[standard]
+
+# WebSocket support for real-time chat
+websockets
+
+# Redis async client
+redis[hiredis]
+aioredis
+
+# Pytest
+pytest
+pytest-asyncio
+httpx
+
+# Mocking Redis for tests
+fakeredis
+
+# Environment variables support
+python-dotenv
+
+# Logging
+python-json-logger
+
+# CORS support
+fastapi-cors
+
+# Data validation and settings
+pydantic[email]
+pydantic-settings
+
+# Date/time utilities
+python-dateutil
