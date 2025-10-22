@@ -200,8 +200,11 @@ async def handle_websocket_message(
 ):
     """Manejar mensaje recibido por WebSocket"""
     try:
-        content = message_data.get("content", "").strip()
+        # Accept both 'content' and 'message' for backwards compatibility
+        content = message_data.get("content") or message_data.get("message", "")
+        content = content.strip()
         if not content or len(content) > settings.max_message_length:
+            logger.warning(f"Invalid message: empty or too long")
             return
         
         message_type = MessageType(message_data.get("message_type", "text"))
