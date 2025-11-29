@@ -24,13 +24,11 @@ RUN useradd -m -u 1000 chatuser && \
 USER chatuser
 
 # Expose port
-EXPOSE 8443
+EXPOSE 8000
 
-# Health check - verify the service is listening on port 8443
+# Health check - verify the service is listening on port 8000
 HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
-    CMD python -c "import socket; s = socket.socket(socket.AF_INET, socket.SOCK_STREAM); s.connect(('localhost', 8443)); s.close()" || exit 1
+    CMD python -c "import socket; s = socket.socket(socket.AF_INET, socket.SOCK_STREAM); s.connect(('localhost', 8000)); s.close()" || exit 1
 
 # Run the application
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8443", \
-     "--ssl-keyfile", "/etc/ssl/private/server.key", \
-     "--ssl-certfile", "/etc/ssl/certs/server.crt"]
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
